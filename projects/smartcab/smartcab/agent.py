@@ -44,7 +44,7 @@ class LearningAgent(Agent):
             self.epsilon = 0
             self.alpha = 0
         else:
-            self.epsilon = self.epsilon - 0.05
+            self.epsilon = self.epsilon - 0.02
          # Q-Learning Simulation Results : End
 
         return None
@@ -144,7 +144,9 @@ class LearningAgent(Agent):
                 action = random.choice(self.valid_actions)
             else:
                 valid_action_values = self.get_action(state)
-                action = random.choice(valid_action_values)   
+                print "valid_action_values = {}".format(valid_action_values)
+                if valid_action_values is not None:
+                    action = random.choice(valid_action_values)
         else:
             action = random.choice(self.valid_actions)
         
@@ -198,7 +200,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent, learning=True) # 4.1 Basic Agent Simulation Results
+    agent = env.create_agent(LearningAgent, learning=True, epsilon=2, alpha=0.1) # 4.1 Basic Agent Simulation Results
     
     ##############
     # Follow the driving agent
@@ -213,14 +215,15 @@ def run():
     #   display      - set to False to disable the GUI if PyGame is enabled
     #   log_metrics  - set to True to log trial and simulation results to /logs
     #   optimized    - set to True to change the default log file name
-    sim = Simulator(env, update_delay=0.01, log_metrics=True) # 4.1 Basic Agent Simulation Results
+    #sim = Simulator(env, update_delay=0.01, log_metrics=True) # 4.1 Basic Agent Simulation Results
+    sim = Simulator(env, update_delay=0.01, log_metrics=True, optimized=True) # 4.1 Basic Agent Simulation Results
     
     ##############
     # Run the simulator
     # Flags:
     #   tolerance  - epsilon tolerance before beginning testing, default is 0.05 
     #   n_test     - discrete number of testing trials to perform, default is 0
-    sim.run(n_test=10, tolerance=0.05) # 4.1 Basic Agent Simulation Results
+    sim.run(n_test=20, tolerance=0.02) # 4.1 Basic Agent Simulation Results
 
 
 if __name__ == '__main__':
