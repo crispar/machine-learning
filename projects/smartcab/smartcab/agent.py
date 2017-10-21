@@ -44,7 +44,7 @@ class LearningAgent(Agent):
             self.epsilon = 0
             self.alpha = 0
         else:
-            self.epsilon = self.epsilon - 0.02
+            self.epsilon = self.epsilon - 0.05
          # Q-Learning Simulation Results : End
 
         return None
@@ -200,7 +200,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent, learning=True, epsilon=2, alpha=0.1) # 4.1 Basic Agent Simulation Results
+    agent = env.create_agent(LearningAgent, learning=True, epsilon=5, alpha=0.1) # 4.1 Basic Agent Simulation Results
     
     ##############
     # Follow the driving agent
